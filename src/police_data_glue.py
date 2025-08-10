@@ -72,14 +72,13 @@ def write_data(glueContext, dyf, database, table):
     path=s3_bucket_path,
     connection_type="s3",
     updateBehavior="UPDATE_IN_DATABASE",
-    partitionKeys=[],
+    partitionKeys=["date"],
     compression="snappy",
     enableUpdateCatalog=True,
     transformation_ctx="s3output",
     )
     s3output.setCatalogInfo(
-    catalogDatabase=database,
-    catalogTableName=f'{table}_cleaned'
+    catalogDatabase=database, catalogTableName=f'{table}_cleaned'
     )
     s3output.setFormat("glueparquet")
     s3output.writeFrame(dyf)
@@ -118,18 +117,7 @@ def main():
         'cl01',
         'cl02',
         'cl03',
-        'close_type_3',
-        'ward',
-        'ward_code',
-        'response_time',
-        'duplicate',
-        'asbcount',
-        'datetime',
-        'ward_wardcode',
-        'safer_neighborhood_team_name',
-        'safer_neighborhood_team_code',
-        'safer_neighborhood_team_borough_name',
-        'safer_neighborhood_team_borough_code']
+        'close_type_3']
     df = clean_data(df, col_to_drop)
 
     cleaned_dyf = DynamicFrame.fromDF(df, glueContext, "cleaned_dyf")

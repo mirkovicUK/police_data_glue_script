@@ -207,3 +207,11 @@ marimo/_lsp/
 __marimo__/
 
 
+# More specific
+*.parquet*
+*.parquet.crc
+.run-*.crc
+
+# Ignore all Hadoop temp files
+.run-*
+_temporary/
