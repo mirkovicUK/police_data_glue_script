@@ -213,5 +213,10 @@ __marimo__/
 .run-*.crc
 
 # Ignore all Hadoop temp files
+*.run-*
 .run-*
 _temporary/
+*.crc
+
+
+
